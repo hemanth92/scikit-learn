@@ -398,7 +398,7 @@ else:
     assert_allclose = _assert_allclose
 
 
-def assert_raise_message(exceptions, message, function, *args, **kwargs):
+def assert_raise_message(exceptions, message, func, *args, **kwargs):
     """Helper function to test error messages in exceptions.
 
     Parameters
@@ -414,7 +414,7 @@ def assert_raise_message(exceptions, message, function, *args, **kwargs):
     **kw : the keyword arguments to `func`
     """
     try:
-        function(*args, **kwargs)
+        func(*args, **kwargs)
     except exceptions as e:
         error_message = str(e)
         if message not in error_message:
@@ -429,7 +429,7 @@ def assert_raise_message(exceptions, message, function, *args, **kwargs):
             names = exceptions.__name__
 
         raise AssertionError("%s not raised by %s" %
-                             (names, function.__name__))
+                             (names, func.__name__))
 
 
 def fake_mldata(columns_dict, dataname, matfile, ordering=None):
